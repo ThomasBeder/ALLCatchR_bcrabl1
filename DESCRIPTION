@@ -19,7 +19,8 @@ Imports:
     LiblineaR,
     kknn,
     randomForest,
-    ranger
+    ranger,
+    glmnet
 Suggests:
     knitr,
     rmarkdown
