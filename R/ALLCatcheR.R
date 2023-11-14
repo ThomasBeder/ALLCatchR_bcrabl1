@@ -139,20 +139,9 @@ allcatch <- function(Counts.file=NA, ID_class="symbol", sep="\t") {
 cat("ML BCR::ABL1 subcluster prediction...\n")
 res <- list()     
 for (i in 1:6) {
-  preds <- list()
-  preds_prob <- list()
-  for (x in 1) {
-    preds[[x]] <- as.character(caret::predict.train(bcrabl1_models[[i]][[x]], Counts.norm, type = "raw"))
-   # preds_prob[[x]] <- caret::predict.train(bcrabl1_models[[i]][[x]], Counts.norm, type = "prob")
-  }
-  preds <- do.call("cbind",preds)
-  preds_prob <- do.call("cbind",preds_prob)
-  TestPred <- preds
-  head(preds_prob)
-  
-  res[[i]] <- data.frame(sample = rownames(Counts.norm),
-                        class = preds_prob[,1],
-                        rest = preds_prob[,2])
+res[[i]] <- data.frame(sample = rownames(Counts.norm),
+                        class = caret::predict.train(bcrabl1_models[[i]][[x]], Counts.norm, type = "prob")[,1],
+                        rest = caret::predict.train(bcrabl1_models[[i]][[x]], Counts.norm, type = "prob")[,2])
   
 }
 resdf <- do.call("cbind",res)    
