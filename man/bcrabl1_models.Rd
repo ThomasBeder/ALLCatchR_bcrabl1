@@ -3,7 +3,7 @@
 \docType{data}
 \name{bcrabl1_models}
 \alias{bcrabl1_models}
-\title{classification model}
+\title{classification BCR::ABL1 subcluster model}
 \format{
 list with different prediction models
 }
@@ -11,6 +11,6 @@ list with different prediction models
 data(bcrabl1_models)
 }
 \description{
-model used for predictions including cross-validation
+model used for BCR::ABL1 subcluster prediction
 }
 \keyword{datasets}
