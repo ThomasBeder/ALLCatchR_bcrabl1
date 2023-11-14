@@ -20,6 +20,7 @@ allcatch <- function(Counts.file=NA, ID_class="symbol", sep="\t") {
   loadNamespace("randomForest")
   loadNamespace("LiblineaR")
   loadNamespace("glmnet")
+  loadNamespace("caret")
   # 1. preprocessing ############################################################
   # load count data, where the first column should be gene identifiers
   if(is.na(Counts.file)){
