@@ -182,7 +182,7 @@ cat("predictions saved in:", getwd(),"\n")
   cat("Writing output file:",paste0(getwd(), "/predictions_bcrabl1_subcluster.tsv"),"...\n")
   utils::write.table(resdf,"predictions_bcrabl1_subcluster", sep = "\t", row.names = F)
   return(invisible(resdf))
-}
+
                                       
   cat("Classification using ssGSEA...\n")
   # 3. classification using ssGSEA ###########################################
