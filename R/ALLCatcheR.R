@@ -134,7 +134,8 @@ allcatch <- function(Counts.file=NA, ID_class="symbol", sep="\t") {
     Prediction20[ma] <- "Near.haploid"
     }
 
-  
+
+res <- list()                                        
 cat("ML BCR::ABL1 subcluster prediction...\n")
 for (i in 1:length(bcrabl1_models)) {
   preds <- list()
