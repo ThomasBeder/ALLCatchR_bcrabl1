@@ -61,9 +61,9 @@
 #'
 "models_L_sex"
 
-#' classification BCR::ABL1 subcluster model
+#' classification BCR_ABL1 subcluster model
 #'
-#' model used for BCR::ABL1 subcluster prediction
+#' model used for BCR_ABL1 subcluster prediction
 #'
 #' @format list with different prediction models
 #' @usage data(bcrabl1_models)
