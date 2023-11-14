@@ -138,10 +138,10 @@ allcatch <- function(Counts.file=NA, ID_class="symbol", sep="\t") {
                                    
 cat("ML BCR::ABL1 subcluster prediction...\n")
 res <- list()     
-for (i in 1:length(bcrabl1_models)) {
+for (i in 1:6) {
   preds <- list()
   preds_prob <- list()
-  for (x in 1:length(bcrabl1_models[[i]])) {
+  for (x in 1) {
     preds[[x]] <- as.character(caret::predict(bcrabl1_models[[i]][[x]], Counts.norm, type = "raw"))
     preds_prob[[x]] <- caret::predict(bcrabl1_models[[i]][[x]], Counts.norm, type = "prob")
   }
