@@ -20,7 +20,7 @@ allcatch <- function(Counts.file=NA, ID_class="symbol", sep="\t") {
   loadNamespace("randomForest")
   loadNamespace("LiblineaR")
   loadNamespace("glmnet")
-  loadNamespace("caret")
+  #loadNamespace("caret")
   # 1. preprocessing ############################################################
   # load count data, where the first column should be gene identifiers
   if(is.na(Counts.file)){
@@ -135,14 +135,15 @@ allcatch <- function(Counts.file=NA, ID_class="symbol", sep="\t") {
     }
 
 
-res <- list()                                        
+                                   
 cat("ML BCR::ABL1 subcluster prediction...\n")
+res <- list()     
 for (i in 1:length(bcrabl1_models)) {
   preds <- list()
   preds_prob <- list()
   for (x in 1:length(bcrabl1_models[[i]])) {
-  #  preds[[x]] <- as.character(predict.train(bcrabl1_models[[i]][[x]], Counts.norm,type = "raw"))
-    preds_prob[[x]] <- predict.train(bcrabl1_models[[i]][[x]], Counts.norm,type = "prob")
+    preds[[x]] <- as.character(caret::predict.train(bcrabl1_models[[i]][[x]], Counts.norm,type = "raw"))
+  #  preds_prob[[x]] <- caret::predict.train(bcrabl1_models[[i]][[x]], Counts.norm,type = "prob")
   }
   preds <- do.call("cbind",preds)
   preds_prob <- do.call("cbind",preds_prob)
