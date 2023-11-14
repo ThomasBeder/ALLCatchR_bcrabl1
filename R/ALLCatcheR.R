@@ -139,15 +139,15 @@ for (i in 1:length(bcrabl1_models)) {
   preds <- list()
   preds_prob <- list()
   for (x in 1:length(bcrabl1_models[[i]])) {
-    preds[[x]] <- as.character(caret::predict(bcrabl1_models[[i]][[x]], counts.norm_MLL,type = "raw"))
-    preds_prob[[x]] <- caret::predict(bcrabl1_models[[i]][[x]], counts.norm_MLL,type = "prob")
+    preds[[x]] <- as.character(caret::predict.train(bcrabl1_models[[i]][[x]], counts.norm_MLL,type = "raw"))
+    preds_prob[[x]] <- caret::predict.train(bcrabl1_models[[i]][[x]], counts.norm_MLL,type = "prob")
   }
   preds <- do.call("cbind",preds)
   preds_prob <- do.call("cbind",preds_prob)
   TestPred <- preds
   head(preds_prob)
   
-  res[[i]] <- data.frame(sample = rownames(counts.norm_MLL),
+  res[[i]] <- data.frame(sample = rownames(Counts.norm),
                         class = preds_prob[,1],
                         rest = preds_prob[,2])
   
