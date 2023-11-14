@@ -139,8 +139,8 @@ for (i in 1:length(bcrabl1_models)) {
   preds <- list()
   preds_prob <- list()
   for (x in 1:length(bcrabl1_models[[i]])) {
-    preds[[x]] <- as.character(predict(caret::bcrabl1_models[[i]][[x]], counts.norm_MLL,type = "raw"))
-    preds_prob[[x]] <- predict(caret::bcrabl1_models[[i]][[x]], counts.norm_MLL,type = "prob")
+    preds[[x]] <- as.character(caret::predict(bcrabl1_models[[i]][[x]], counts.norm_MLL,type = "raw"))
+    preds_prob[[x]] <- caret::predict(bcrabl1_models[[i]][[x]], counts.norm_MLL,type = "prob")
   }
   preds <- do.call("cbind",preds)
   preds_prob <- do.call("cbind",preds_prob)
