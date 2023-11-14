@@ -141,7 +141,7 @@ for (i in 1:length(bcrabl1_models)) {
   preds <- list()
   preds_prob <- list()
   for (x in 1:length(bcrabl1_models[[i]])) {
-    preds[[x]] <- as.character(caret::predict.train(bcrabl1_models[[i]][[x]], Counts.norm,type = "raw"))
+  #  preds[[x]] <- as.character(caret::predict.train(bcrabl1_models[[i]][[x]], Counts.norm,type = "raw"))
     preds_prob[[x]] <- caret::predict.train(bcrabl1_models[[i]][[x]], Counts.norm,type = "prob")
   }
   preds <- do.call("cbind",preds)
@@ -155,11 +155,6 @@ for (i in 1:length(bcrabl1_models)) {
   
 }
 resdf <- do.call("cbind",res)    
-head(resdf)
-
-hist(resdf[,2])
-hist(resdf[,3])
-which(colnames(resdf) == "class") 
 
 colnames(resdf)[c(2,3)] <- c("lymphoid", "multilineage")
 colnames(resdf)[c(5,8,11,14)] <- c("delHBS1L",    "CDKN2A/PAX5", "IKZF1",       "del7")
@@ -181,7 +176,7 @@ resdf$BCR_ABL1_subcluster_score <- BCR_ABL1_subcluster_score
 
 cat("predictions saved in:", getwd(),"\n")
   # save predictions
-  cat("Writing output file:",paste0(getwd(), "/predictions_bcrabl1_subcluster.tsv"),"...\n")
+  cat("Writing BCR::ABL1 output file:",paste0(getwd(), "/predictions_bcrabl1_subcluster.tsv"),"...\n")
   utils::write.table(resdf,"predictions_bcrabl1_subcluster", sep = "\t", row.names = F)
   return(invisible(resdf))
 
