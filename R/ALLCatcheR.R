@@ -1,4 +1,4 @@
-globalVariables(c("test_data","models_20","NH","BC_model_GMALL","BC_model_MLL","models_L_sex","models_L_Immuno"))
+globalVariables(c("test_data","models_20","NH","BC_model_GMALL","BC_model_MLL","models_L_sex","models_L_Immuno", "bcrabl1_models"))
 
 #' @title Classifiction
 #'
@@ -132,7 +132,58 @@ allcatch <- function(Counts.file=NA, ID_class="symbol", sep="\t") {
     mat20[ma,which(colnames(mat20) == "Near.haploid")] <- MaxNH[ma]
     Prediction20[ma] <- "Near.haploid"
     }
+
   
+cat("ML BCR::ABL1 subcluster prediction...\n")
+for (i in 1:length(bcrabl1_models)) {
+  preds <- list()
+  preds_prob <- list()
+  for (x in 1:length(bcrabl1_models[[i]])) {
+    preds[[x]] <- as.character(predict(caret::bcrabl1_models[[i]][[x]], counts.norm_MLL,type = "raw"))
+    preds_prob[[x]] <- predict(caret::bcrabl1_models[[i]][[x]], counts.norm_MLL,type = "prob")
+  }
+  preds <- do.call("cbind",preds)
+  preds_prob <- do.call("cbind",preds_prob)
+  TestPred <- preds
+  head(preds_prob)
+  
+  res[[i]] <- data.frame(sample = rownames(counts.norm_MLL),
+                        class = preds_prob[,1],
+                        rest = preds_prob[,2])
+  
+}
+resdf <- do.call("cbind",res)    
+head(resdf)
+
+hist(resdf[,2])
+hist(resdf[,3])
+which(colnames(resdf) == "class") 
+
+colnames(resdf)[c(2,3)] <- c("lymphoid", "multilineage")
+colnames(resdf)[c(5,8,11,14)] <- c("delHBS1L",    "CDKN2A/PAX5", "IKZF1",       "del7")
+colnames(resdf)[c(17,18)] <- c("hyperdiploid", "wt")
+                                        
+ ma <- match(c("sample", "multilineage", "lymphoid", "delHBS1L", "del7",        
+      "IKZF1", "CDKN2A/PAX5", "hyperdiploid"), colnames(resdf))
+resdf <- resdf[,ma]                                       
+BCR_ABL1_subcluster_prediction <- c()
+BCR_ABL1_subcluster_score <- c()
+
+for (i in 1:nrow(resdf)) {
+  BCR_ABL1_subcluster_prediction[i] <- paste(colnames(resdf)[-1][which(resdf[i,-1] > 0.5)], collapse = ";")
+  BCR_ABL1_subcluster_score[i] <- paste(round(resdf[i,-1][which(resdf[i,-1] > 0.5)], digits = 2), collapse = ";")
+}
+
+resdf$BCR_ABL1_subcluster_prediction <- BCR_ABL1_subcluster_prediction
+resdf$BCR_ABL1_subcluster_score <- BCR_ABL1_subcluster_score                                        
+
+cat("predictions saved in:", getwd(),"\n")
+  # save predictions
+  cat("Writing output file:",paste0(getwd(), "/predictions_bcrabl1_subcluster.tsv"),"...\n")
+  utils::write.table(resdf,"predictions_bcrabl1_subcluster", sep = "\t", row.names = F)
+  return(invisible(resdf))
+}
+                                      
   cat("Classification using ssGSEA...\n")
   # 3. classification using ssGSEA ###########################################
   # calculate tpmps
