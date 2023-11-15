@@ -140,8 +140,8 @@ cat("ML BCR::ABL1 subcluster prediction...\n")
 res <- list()     
 for (i in 1:6) {
 res[[i]] <- data.frame(sample = rownames(Counts.norm),
-                        class = caret::predict.train(bcrabl1_models[[i]], Counts.norm, type = "prob")[,1],
-                        rest = caret::predict.train(bcrabl1_models[[i]], Counts.norm, type = "prob")[,2])
+                        class = caret::predict.train(bcrabl1_models[[i]][[1]], Counts.norm, type = "prob")[,1],
+                        rest = caret::predict.train(bcrabl1_models[[i]][[1]], Counts.norm, type = "prob")[,2])
   
 }
 resdf <- do.call("cbind",res)    
