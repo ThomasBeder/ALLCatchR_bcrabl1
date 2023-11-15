@@ -164,10 +164,8 @@ for (i in 1:nrow(resdf)) {
 resdf$BCR_ABL1_subcluster_prediction <- BCR_ABL1_subcluster_prediction
 resdf$BCR_ABL1_subcluster_score <- BCR_ABL1_subcluster_score                                        
 
-cat("predictions saved in:", getwd(),"\n")
-  # save predictions
-  cat("Writing BCR::ABL1 output file:",paste0(getwd(), "/predictions_bcrabl1_subcluster.tsv"),"...\n")
-  utils::write.table(resdf,"predictions_bcrabl1_subcluster", sep = "\t", row.names = F)
+resdf_BCRABL1_sub <- resdf
+                                        
                                       
   cat("Classification using ssGSEA...\n")
   # 3. classification using ssGSEA ###########################################
@@ -553,11 +551,13 @@ cat("assign putative progenitor...", getwd(),"\n")
 ################################################################################  
 # 4. generate output ###########################################################
 ################################################################################  
-  
+resdf_BCRABL1_sub <- resdf  
 output <- cbind(sample = rownames(mat20),
                   Score = ML_KNN,
                   Prediction = Prediction20, 
                   Confidence = tier,
+                  BCR_ABL1_subcluster_pred = resdf_BCRABL1_sub$BCR_ABL1_subcluster_prediction,
+                  BCR_ABL1_subcluster_score = resdf_BCRABL1_sub$BCR_ABL1_subcluster_score,
                   BlastCounts = predsBC,
                   Sex = PredictionSex,
                   Score_sex = MaxSex,
@@ -565,8 +565,11 @@ output <- cbind(sample = rownames(mat20),
                   ScoreImmuno = MaxImmuno,
                   TotalScore_scaled,
                   mat20, 
-                  geneSetPreds_df)
-
+                  geneSetPreds_df,
+                 resdf_BCRABL1_sub[,2:8])
+output$BCR_ABL1_subcluster_pred[which(output$Prediction != "Ph-pos")] <- "not Ph-pos predicted"
+output$BCR_ABL1_subcluster_score[which(output$Prediction != "Ph-pos")] <- "not Ph-pos predicted"
+                                          
 table(output$Prediction)  
 output$Prediction <- cutoffs$subtype[match(output$Prediction,cutoffs$class)]
 ML_cols <- grep("ML_", colnames(output))
