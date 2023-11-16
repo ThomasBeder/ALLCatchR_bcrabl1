@@ -571,8 +571,8 @@ output <- cbind(sample = rownames(mat20),
 # final BCR::ABL1 subcluster predictions only for samples predicted to be Ph-pos                                           
 output$BCR_ABL1_subcluster_pred[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
 output$BCR_ABL1_subcluster_score[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
-output$BCR_ABL1_subcluster_pred[which(Confidence == "unclassified")] <- "not Ph-pos predicted"
-output$BCR_ABL1_subcluster_score[which(Confidence == "unclassified")] <- "not Ph-pos predicted"
+output$BCR_ABL1_subcluster_pred[which(output$Confidence == "unclassified")] <- "not Ph-pos predicted"
+output$BCR_ABL1_subcluster_score[which(output$Confidence == "unclassified")] <- "not Ph-pos predicted"
                                                                                     
 table(output$Prediction)  
 # update subtype names                                          
