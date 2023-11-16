@@ -552,7 +552,7 @@ cat("assign putative progenitor...", getwd(),"\n")
 ################################################################################  
 # 4. generate output ###########################################################
 ################################################################################  
-colnames(resdf_BCRABL1_sub[,2:8]) <- paste0("bcrabl1_", colnames(resdf_BCRABL1_sub[,2:8]))                 
+colnames(output)[2:8] <- paste0("bcrabl1_", colnames(output)[2:8])                 
 
 output <- cbind(sample = rownames(mat20),
                   Score = ML_KNN,
