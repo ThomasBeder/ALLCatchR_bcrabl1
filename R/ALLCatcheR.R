@@ -587,5 +587,5 @@ cat("predictions saved in:", getwd(),"\n")
   # save predictions
   cat("Writing output file:",paste0(out.file),"...\n")
   utils::write.table(output,out.file, sep = sep, row.names = F)
-  return(invisible(output))
+  return(output)
 }
