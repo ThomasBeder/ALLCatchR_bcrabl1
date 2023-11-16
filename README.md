@@ -1,6 +1,6 @@
 # ALLCatchRbcrabl1
 
-_This is an update of the gene expression based BCP-ALL subtype classifier **ALLCatchR** (https://github.com/ThomasBeder/ALLCatchR) including the sublcuster identification of Ph-pos (BCR::ABL1). ‘Multilineage’ vs. ‘lymphoid-only’ BCR::ABL1 involvement and distinct cooperating events determine gene expression in BCR::ABL1-positive ALL_
+_This is an update of the gene expression based BCP-ALL subtype classifier **ALLCatchR** (https://github.com/ThomasBeder/ALLCatchR) including the sublcuster identification of Ph-pos (BCR::ABL1). ‘Multilineage’ vs. ‘lymphoid-only’ BCR::ABL1 involvement and distinct cooperating events determine gene expression in BCR::ABL1-positive ALL._
 
 # links to References
 - BCR::ABL1 subcluster https://ash.confex.com/ash/2023/webprogram/Paper187315.html
@@ -54,7 +54,7 @@ allcatch_bcrabl1(Counts.file = NA, ID_class = "symbol", sep = "\t", out.file = "
 ```
 
 ## output
-ALLCatchR writes a ```out.file``` file to your current working directory (or the path defined by out.file parameter) with the following columns:
+ALLCatchR writes a ```out.file``` file to your current working directory (or the path defined by ```out.file``` parameter) with the following columns:
 - sample: Sample ID
 - Score: BCP-ALL subtype prediction score
 - Prediction: Predicted subtype
