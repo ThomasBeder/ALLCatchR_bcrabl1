@@ -166,7 +166,7 @@ resdf$BCR_ABL1_subcluster_prediction <- BCR_ABL1_subcluster_prediction
 resdf$BCR_ABL1_subcluster_score <- BCR_ABL1_subcluster_score                                        
 
 resdf_BCRABL1_sub <- resdf
-colnames(resdf_BCRABL1_sub) <- paste0("bcrabl1_", colnames(resdf_BCRABL1_sub))                                     
+               
                                       
   cat("Classification using ssGSEA...\n")
   # 3. classification using ssGSEA ###########################################
@@ -552,6 +552,7 @@ cat("assign putative progenitor...", getwd(),"\n")
 ################################################################################  
 # 4. generate output ###########################################################
 ################################################################################  
+colnames(resdf_BCRABL1_sub[,2:8]) <- paste0("bcrabl1_", colnames(resdf_BCRABL1_sub[,2:8]))                 
 
 output <- cbind(sample = rownames(mat20),
                   Score = ML_KNN,
