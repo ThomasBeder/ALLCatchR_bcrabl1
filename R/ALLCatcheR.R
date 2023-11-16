@@ -10,10 +10,10 @@ globalVariables(c("test_data","models_20","NH","BC_model_GMALL","BC_model_MLL","
 #' @param sep file seperator
 #' @return data.frame containing class predictions
 #' @examples
-#' allcatch()
+#' allcatch_bcrabl1()
 #'
 
-allcatch <- function(Counts.file=NA, ID_class="symbol", sep="\t") {
+allcatch_bcrabl1 <- function(Counts.file=NA, ID_class="symbol", sep="\t") {
   # Namespace from packages needed for prediction function using pre-trainted models
   loadNamespace("kknn")
   loadNamespace("ranger")
