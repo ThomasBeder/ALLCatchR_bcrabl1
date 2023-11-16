@@ -8,12 +8,13 @@ globalVariables(c("test_data","models_20","NH","BC_model_GMALL","BC_model_MLL","
 #' @param Counts.file count data
 #' @param ID_class gene ids
 #' @param sep file seperator
+#' @param out.file output file name
 #' @return data.frame containing class predictions
 #' @examples
 #' allcatch_bcrabl1()
 #'
 
-allcatch_bcrabl1 <- function(Counts.file=NA, ID_class="symbol", sep="\t") {
+allcatch_bcrabl1 <- function(Counts.file=NA, ID_class="symbol", sep="\t", out.file=paste0(getwd(),"/predictions.tsv")) {
   # Namespace from packages needed for prediction function using pre-trainted models
   loadNamespace("kknn")
   loadNamespace("ranger")
@@ -584,7 +585,7 @@ colnames(output)[NN_cols] <- paste0("NN_",cutoffs$subtype[match(gsub("NN_","", c
 
 cat("predictions saved in:", getwd(),"\n")
   # save predictions
-  cat("Writing output file:",paste0(getwd(), "/predictions.tsv"),"...\n")
-  utils::write.table(output,"predictions.tsv", sep = "\t", row.names = F)
+  cat("Writing output file:",paste0(out.file),"...\n")
+  utils::write.table(output,out.file, sep = sep, row.names = F)
   return(invisible(output))
 }
