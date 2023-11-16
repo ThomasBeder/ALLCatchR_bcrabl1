@@ -18,8 +18,7 @@ _ALLCatchRbcrabl1_ was developed to predict:
 # ALLCatchR
 ![image](ALLCatchR_abstract.png)
 # _BCR::ABL1_ gene expression subclusters
-![image](ALLCatchRbcrabl1_abstract.png)
-<img src="https://github.com/ThomasBeder/ALLCatchR_bcrabl1/blob/development/ALLCatchRbcrabl1_abstract.png" width=50% height=50%>
+<img src="https://github.com/ThomasBeder/ALLCatchR_bcrabl1/blob/development/ALLCatchRbcrabl1_abstract.png" width=75% height=75%>
 
 
 ## Publications
