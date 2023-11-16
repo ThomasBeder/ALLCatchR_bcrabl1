@@ -1,8 +1,3 @@
-# IMPORTANT
-
-# ALLCatchR was further developed to predict Ph-pos (_BCR:ABL1_) subcluster 
-# please see https://github.com/ThomasBeder/ALLCatchR_bcrabl1
-
 # ALLCatchRbcrabl1
 
 _This is an update of the gene expression based BCP-ALL subtype classifier **ALLCatchR** (https://github.com/ThomasBeder/ALLCatchR) including the sublcuster identification of Ph-pos (BCR::ABL1). ‘Multilineage’ vs. ‘lymphoid-only’ BCR::ABL1 involvement and distinct cooperating events determine gene expression in BCR::ABL1-positive ALL._
