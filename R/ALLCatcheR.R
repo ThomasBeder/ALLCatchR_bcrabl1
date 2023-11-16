@@ -567,10 +567,11 @@ output <- cbind(sample = rownames(mat20),
                   mat20, 
                   geneSetPreds_df,
                  resdf_BCRABL1_sub[,2:8])
-output$BCR_ABL1_subcluster_pred[which(output$Prediction != "Ph-pos")] <- "not Ph-pos predicted"
-output$BCR_ABL1_subcluster_score[which(output$Prediction != "Ph-pos")] <- "not Ph-pos predicted"
+output$BCR_ABL1_subcluster_pred[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
+output$BCR_ABL1_subcluster_score[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
                                           
 table(output$Prediction)  
+# update subtype names                                          
 output$Prediction <- cutoffs$subtype[match(output$Prediction,cutoffs$class)]
 ML_cols <- grep("ML_", colnames(output))
 colnames(output)[ML_cols] <- paste0("ML_",cutoffs$subtype[match(gsub("ML_","", colnames(output)[ML_cols]), cutoffs$class)])
