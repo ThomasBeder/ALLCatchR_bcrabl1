@@ -157,8 +157,8 @@ BCR_ABL1_subcluster_prediction <- c()
 BCR_ABL1_subcluster_score <- c()
 
 for (i in 1:nrow(resdf)) {
-  BCR_ABL1_subcluster_prediction[i] <- paste(colnames(resdf)[-1][which(resdf[i,-1] > 0.5)], collapse = ";")
-  BCR_ABL1_subcluster_score[i] <- paste(round(resdf[i,-1][which(resdf[i,-1] > 0.5)], digits = 2), collapse = ";")
+  BCR_ABL1_subcluster_prediction[i] <- paste(colnames(resdf)[-1][which(resdf[i,-1] > 0.55)], collapse = ";")
+  BCR_ABL1_subcluster_score[i] <- paste(round(resdf[i,-1][which(resdf[i,-1] > 0.55)], digits = 2), collapse = ";")
 }
 
 resdf$BCR_ABL1_subcluster_prediction <- BCR_ABL1_subcluster_prediction
@@ -567,9 +567,13 @@ output <- cbind(sample = rownames(mat20),
                   mat20, 
                   geneSetPreds_df,
                  resdf_BCRABL1_sub[,2:8])
+
+# final BCR::ABL1 subcluster predictions only for samples predicted to be Ph-pos                                           
 output$BCR_ABL1_subcluster_pred[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
 output$BCR_ABL1_subcluster_score[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
-                                          
+output$BCR_ABL1_subcluster_pred[which(Confidence == "unclassified")] <- "not Ph-pos predicted"
+output$BCR_ABL1_subcluster_score[which(Confidence == "unclassified")] <- "not Ph-pos predicted"
+                                                                                    
 table(output$Prediction)  
 # update subtype names                                          
 output$Prediction <- cutoffs$subtype[match(output$Prediction,cutoffs$class)]
