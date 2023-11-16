@@ -9,7 +9,7 @@ _This is an update of the gene expression based BCP-ALL subtype classifier **ALL
 
 _ALLCatchRbcrabl1_ was developed to predict:
 - 21 BCP-ALL molecular subtypes (_BCL2/MYC_, _CDX2/UBTF_, _CEBP_, _DUX4_, _ETV6::RUNX1_, _ETV6::RUNX1-like_, _HLF_, Hyperdiploid, iAMP21, _IKZF1 N159Y_, _KMT2A_, Low hypodiploid, _MEF2D_, Near haploid, _NUTM1_, _PAX5 P80R_, _PAX5alt_, _Ph-like_, _Ph-pos_, _TCF3::PBX1_, _ZNF384_)
-- Two _BCR::ABL1_ main gene expression clusters (multilineage and lymphoid) and five subcluster enriched for genomic aberrations (delHBS1L, del7, IKZF1, CDKN2A/B and hyperdiploidy)
+- Two _BCR::ABL1_ main gene expression clusters (multilineage and lymphoid) and five subcluster enriched for genomic aberrations (delHBS1L, del7, IKZF1, CDKN2A/PAX5 and hyperdiploidy)
 - Associations to B lymphopoiesis stages based on gene set enrichment analyses 
 - Blast Count percentage
 - Immunophenotype
