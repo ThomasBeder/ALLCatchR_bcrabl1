@@ -39,14 +39,14 @@ devtools::install_github("ThomasBeder/ALLCatchR_bcrabl1")
 If Counts.file is left ```NA``` ten test samples are predicted
 ```
 library(ALLCatchRbcrabl1)
-allcatch_bcrabl1()
+out <- allcatch_bcrabl1()
 ```
 
 ## Run ALLCatchRbcrabl1
 As input ALLCatchRbcrabl1 requires a single text file in which the first column represent the genes and the other columns the count data for each sample
 ```
 library(ALLCatchRbcrabl1)
-allcatch_bcrabl1(Counts.file = NA, ID_class = "symbol", sep = "\t", out.file = "predictions.tsv")
+out <- allcatch_bcrabl1(Counts.file = NA, ID_class = "symbol", sep = "\t", out.file = "predictions.tsv")
 # Counts.file: /path/to/your/count/data, if left empty a test
 # ID_class: gene names can be either "symbol", "ensemble_ID" or	"entrez_ID"
 # sep: seperator of the text file usually "\t", "," or ";"
