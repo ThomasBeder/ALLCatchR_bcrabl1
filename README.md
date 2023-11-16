@@ -20,8 +20,8 @@ _ALLCatchRbcrabl1_ was developed to predict:
 ![image](ALLCatchRbcrabl1_abstract.png)
 
 ## Publications
-Beder T, Hansen BT, Hartmann AM, et al. A The Gene Expression Classifier ALLCatchR Identifies B-cell Precursor ALL Subtypes and Underlying Developmental Trajectories Across Age _HemaSphere_.  7(9):p e939, September 2023. (https://doi.org/10.1097/HS9.0000000000000939)
-Beder T, Hansen BT, Hartmann AM, et al. A Multi-Cohort Gene Expression Classifier (ALLCatchR) Identifies B-Precursor ALL Subtypes and Their Developmental Trajectories across Age Groups. _Blood_. 2022;140(Supplement 1):1053–1055. (https://doi.org/10.1182/blood-2022-163311)
+- Beder T, Hansen BT, Hartmann AM, et al. A The Gene Expression Classifier ALLCatchR Identifies B-cell Precursor ALL Subtypes and Underlying Developmental Trajectories Across Age _HemaSphere_.  7(9):p e939, September 2023. (https://doi.org/10.1097/HS9.0000000000000939)
+- Beder T, Hansen BT, Hartmann AM, et al. A Multi-Cohort Gene Expression Classifier (ALLCatchR) Identifies B-Precursor ALL Subtypes and Their Developmental Trajectories across Age Groups. _Blood_. 2022;140(Supplement 1):1053–1055. (https://doi.org/10.1182/blood-2022-163311)
 
 ## Installation
 open RStudio
