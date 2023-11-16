@@ -583,6 +583,7 @@ ML_cols <- grep("ML_", colnames(output))
 colnames(output)[ML_cols] <- paste0("ML_",cutoffs$subtype[match(gsub("ML_","", colnames(output)[ML_cols]), cutoffs$class)])
 NN_cols <- grep("NN_", colnames(output))
 colnames(output)[NN_cols] <- paste0("NN_",cutoffs$subtype[match(gsub("NN_","", colnames(output)[NN_cols]), cutoffs$class)])
+rownames(output) <- output$sample
 
 cat("predictions saved in:", getwd(),"\n")
   # save predictions
