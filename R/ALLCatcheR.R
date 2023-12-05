@@ -149,21 +149,45 @@ resdf <- do.call("cbind",res)
 
 colnames(resdf)[c(2,3)] <- c("lymphoid", "multilineage")
 colnames(resdf)[c(5,8,11,14)] <- c("delHBS1L",    "CDKN2A/PAX5", "IKZF1",       "del7")
-colnames(resdf)[c(17,18)] <- c("hyperdiploid", "wt")
-                                        
- ma <- match(c("sample", "multilineage", "lymphoid", "delHBS1L", "del7",        
-      "IKZF1", "CDKN2A/PAX5", "hyperdiploid"), colnames(resdf))
+colnames(resdf)[c(17,18)] <- c("hyperdiploid", "no_hyperdiploid")
+
+hist(resdf$no_hyperdiploid)
+hist(resdf$hyperdiploid)
+
+ma <- match(c("sample", "multilineage", "lymphoid", "delHBS1L", "del7",        
+              "IKZF1", "CDKN2A/PAX5", "no_hyperdiploid", "hyperdiploid"), colnames(resdf))
 resdf <- resdf[,ma]                                       
-BCR_ABL1_subcluster_prediction <- c()
-BCR_ABL1_subcluster_score <- c()
+BCR_ABL1_maincluster_prediction <- c()
+BCR_ABL1_maincluster_score <- c()
 
 for (i in 1:nrow(resdf)) {
-  BCR_ABL1_subcluster_prediction[i] <- paste(colnames(resdf)[-1][which(resdf[i,-1] > 0.55)], collapse = ";")
-  BCR_ABL1_subcluster_score[i] <- paste(round(resdf[i,-1][which(resdf[i,-1] > 0.55)], digits = 2), collapse = ";")
+  BCR_ABL1_maincluster_prediction[i] <- paste(colnames(resdf)[2:3][which(resdf[i,2:3] > 0.55)], collapse = ";")
+  BCR_ABL1_maincluster_score[i] <- paste(round(resdf[i,2:3][which(resdf[i,2:3] > 0.55)], digits = 2), collapse = ";")
 }
 
+BCR_ABL1_subcluster_prediction <- c()
+BCR_ABL1_subcluster_score <- c()
+colnames(resdf)
+for (i in 1:nrow(resdf)) {
+  BCR_ABL1_subcluster_prediction[i] <- paste(colnames(resdf)[4:7][which(resdf[i,4:7] > 0.55)], collapse = ";")
+  BCR_ABL1_subcluster_score[i] <- paste(round(resdf[i,4:7][which(resdf[i,4:7] > 0.55)], digits = 2), collapse = ";")
+}
+
+BCR_ABL1_hyperdiploid_prediction <- c()
+BCR_ABL1_hyperdiploid_score <- c()
+
+for (i in 1:nrow(resdf)) {
+  BCR_ABL1_hyperdiploid_prediction[i] <- paste(colnames(resdf)[8:9][which(resdf[i,8:9] > 0.55)], collapse = ";")
+  BCR_ABL1_hyperdiploid_score[i] <- paste(round(resdf[i,8:9][which(resdf[i,8:9] > 0.55)], digits = 2), collapse = ";")
+}
+
+
+resdf$BCR_ABL1_maincluster_prediction <- BCR_ABL1_maincluster_prediction
+resdf$BCR_ABL1_maincluster_score <- BCR_ABL1_maincluster_score        
 resdf$BCR_ABL1_subcluster_prediction <- BCR_ABL1_subcluster_prediction
 resdf$BCR_ABL1_subcluster_score <- BCR_ABL1_subcluster_score                                        
+resdf$BCR_ABL1_hyperdiploid_prediction <- BCR_ABL1_hyperdiploid_prediction
+resdf$BCR_ABL1_hyperdiploid_score <- BCR_ABL1_hyperdiploid_score   
 
 resdf_BCRABL1_sub <- resdf
                
@@ -558,8 +582,14 @@ output <- cbind(sample = rownames(mat20),
                   Score = ML_KNN,
                   Prediction = Prediction20, 
                   Confidence = tier,
+                 
+                  BCR_ABL1_maincluster_pred = resdf_BCRABL1_sub$BCR_ABL1_maincluster_prediction,
+                  BCR_ABL1_maincluster_score = resdf_BCRABL1_sub$BCR_ABL1_maincluster_score,
                   BCR_ABL1_subcluster_pred = resdf_BCRABL1_sub$BCR_ABL1_subcluster_prediction,
                   BCR_ABL1_subcluster_score = resdf_BCRABL1_sub$BCR_ABL1_subcluster_score,
+                  BCR_ABL1_hyperdiploidy_pred = resdf_BCRABL1_sub$BCR_ABL1_hyperdiploid_prediction,
+                  BCR_ABL1_hyperdiploidy_score = resdf_BCRABL1_sub$BCR_ABL1_hyperdiploid_score,
+                
                   BlastCounts = predsBC,
                   Sex = PredictionSex,
                   Score_sex = MaxSex,
@@ -568,14 +598,24 @@ output <- cbind(sample = rownames(mat20),
                   TotalScore_scaled,
                   mat20, 
                   geneSetPreds_df,
-                 resdf_BCRABL1_sub[,2:8])
+                 resdf_BCRABL1_sub[,2:9])
 
 # final BCR::ABL1 subcluster predictions only for samples predicted to be Ph-pos                                           
+output$BCR_ABL1_maincluster_pred[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
+output$BCR_ABL1_maincluster_score[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
+output$BCR_ABL1_maincluster_pred[which(output$Confidence == "unclassified")] <- "not Ph-pos predicted"
+output$BCR_ABL1_maincluster_score[which(output$Confidence == "unclassified")] <- "not Ph-pos predicted"
+
 output$BCR_ABL1_subcluster_pred[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
 output$BCR_ABL1_subcluster_score[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
 output$BCR_ABL1_subcluster_pred[which(output$Confidence == "unclassified")] <- "not Ph-pos predicted"
 output$BCR_ABL1_subcluster_score[which(output$Confidence == "unclassified")] <- "not Ph-pos predicted"
-                                                                                    
+
+output$BCR_ABL1_hyperdiploidy_pred[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
+output$BCR_ABL1_hyperdiploidy_score[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
+output$BCR_ABL1_hyperdiploidy_pred[which(output$Confidence == "unclassified")] <- "not Ph-pos predicted"
+output$BCR_ABL1_hyperdiploidy_score[which(output$Confidence == "unclassified")] <- "not Ph-pos predicted"
+                                          
 table(output$Prediction)  
 # update subtype names                                          
 output$Prediction <- cutoffs$subtype[match(output$Prediction,cutoffs$class)]
