@@ -615,6 +615,10 @@ output$BCR_ABL1_hyperdiploidy_pred[which(output$Prediction != "Ph.pos")] <- "not
 output$BCR_ABL1_hyperdiploidy_score[which(output$Prediction != "Ph.pos")] <- "not Ph-pos predicted"
 output$BCR_ABL1_hyperdiploidy_pred[which(output$Confidence == "unclassified")] <- "not Ph-pos predicted"
 output$BCR_ABL1_hyperdiploidy_score[which(output$Confidence == "unclassified")] <- "not Ph-pos predicted"
+
+for (i in 5:10) {
+  output[which(output[,i] == ""),i] <- "score to low"
+}
                                           
 table(output$Prediction)  
 # update subtype names                                          
