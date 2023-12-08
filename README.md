@@ -69,7 +69,6 @@ ALLCatchR writes a ```out.file``` file to your current working directory (or the
 - BCR_ABL1_subcluster_score: corresponding prediciton score
 - BCR_ABL1_hyperdiploidy_pred: _BCR::ABL1_ hyperdiploidy predictions for samples predicted to be Ph-pos
 - BCR_ABL1_hyperdiploidy_score: corresponding prediciton score
-![image](https://github.com/ThomasBeder/ALLCatchR_bcrabl1/assets/82496414/6f98c40b-5c58-4f5f-8f32-70a59967d1c2)
 - BlastCounts: Predicted Blast Count percentage
 - Sex: Patient's sex predition
 - Score_sex: Sex prediciton probability
