@@ -3,13 +3,15 @@
 _This is an update of the gene expression based BCP-ALL subtype classifier **ALLCatchR** (https://github.com/ThomasBeder/ALLCatchR) including the sublcuster identification of Ph-pos (BCR::ABL1). ‘Multilineage’ vs. ‘lymphoid-only’ BCR::ABL1 involvement and distinct cooperating events determine gene expression in BCR::ABL1-positive ALL._
 
 # links to References
-- BCR::ABL1 subcluster https://ash.confex.com/ash/2023/webprogram/Paper187315.html
+- _BCR::ABL1_ subcluster https://ash.confex.com/ash/2023/webprogram/Paper187315.html
 - ALLCatchR - https://journals.lww.com/hemasphere/fulltext/2023/09000/the_gene_expression_classifier_allcatchr.7.aspx
 
 
 _ALLCatchRbcrabl1_ was developed to predict:
 - 21 BCP-ALL molecular subtypes (_BCL2/MYC_, _CDX2/UBTF_, _CEBP_, _DUX4_, _ETV6::RUNX1_, _ETV6::RUNX1-like_, _HLF_, Hyperdiploid, iAMP21, _IKZF1 N159Y_, _KMT2A_, Low hypodiploid, _MEF2D_, Near haploid, _NUTM1_, _PAX5 P80R_, _PAX5alt_, _Ph-like_, _Ph-pos_, _TCF3::PBX1_, _ZNF384_)
-- Two _BCR::ABL1_ main gene expression clusters (multilineage and lymphoid) and five subcluster enriched for genomic aberrations (delHBS1L, del7, IKZF1, CDKN2A/PAX5 and hyperdiploidy)
+- Two _BCR::ABL1_ main gene expression clusters (multilineage and lymphoid)
+- Four _BCR::ABL1_ gene expression subcluster enriched for genomic aberrations (delHBS1L, del7, IKZF1, CDKN2A/PAX5)
+- Hyperdiploidy in _BCR::ABL1_
 - Associations to B lymphopoiesis stages based on gene set enrichment analyses 
 - Blast Count percentage
 - Immunophenotype
@@ -61,14 +63,19 @@ ALLCatchR writes a ```out.file``` file to your current working directory (or the
 - Score: BCP-ALL subtype prediction score
 - Prediction: Predicted subtype
 - Confidence: Confidence of subtype predictions, **IMPORTANT** predictions of samples labeled as unclassified here should be considered unclassified
-- BCR_ABL1_subcluster_pred: BCR::ABL1 subcluster predictions for samples predicted to be Ph-pos
-- BCR_ABL1_subcluster_score: BCR::ABL1 subcluster probability scores for samples predicted to be Ph-pos
+- BCR_ABL1_maincluster_pred: _BCR::ABL1_ main gene expression cluster predictions for samples predicted to be Ph-pos
+- BCR_ABL1_maincluster_score: corresponding prediciton score
+- BCR_ABL1_subcluster_pred: _BCR::ABL1_ subcluster (delHBS1L, del7, IKZF1 and CDKN2A/PAX5) predictions for samples predicted to be Ph-pos
+- BCR_ABL1_subcluster_score: corresponding prediciton score
+- BCR_ABL1_hyperdiploidy_pred: _BCR::ABL1_ hyperdiploidy predictions for samples predicted to be Ph-pos
+- BCR_ABL1_hyperdiploidy_score: corresponding prediciton score
+![image](https://github.com/ThomasBeder/ALLCatchR_bcrabl1/assets/82496414/6f98c40b-5c58-4f5f-8f32-70a59967d1c2)
 - BlastCounts: Predicted Blast Count percentage
 - Sex: Patient's sex predition
 - Score_sex: Sex prediciton probability
 - Immuno: Immunophenotype prediction
 - ScoreImmuno: Immunophenotype prediciton probability
-- 12-18: Enrichment analysis results (singscore, https://github.com/DavisLaboratory/singscore) to gene sets defined for B-cell progenitors
-- 19-39: SVM linear predictions for individual subtypes
-- 40-61: Results from gene set based nearest neighbor analysis
-- 62-68: BCR::ABL1 subcluster probability scores for each sample
+- 16-22: Enrichment analysis results (singscore, https://github.com/DavisLaboratory/singscore) to gene sets defined for B-cell progenitors
+- 23-43: SVM linear predictions for individual subtypes
+- 44-65: Results from gene set based nearest neighbor analysis
+- 66-73: _BCR::ABL1_ gene expression cluster probability scores for each sample
