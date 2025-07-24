@@ -4,7 +4,7 @@
 \alias{allcatch_bcrabl1}
 \title{Classification}
 \usage{
-allcatch_bcrabl1(Counts.file = NA, ID_class = "symbol", sep = "\\t", out.file = "/path)
+allcatch_bcrabl1(Counts.file = NA, ID_class = "symbol", sep = "\\t", out.file = "/path")
 }
 \arguments{
 \item{Counts.file}{count data}
