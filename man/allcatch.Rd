@@ -2,7 +2,7 @@
 % Please edit documentation in R/ALLCatcheR.R
 \name{allcatch}
 \alias{allcatch}
-\title{Classifiction}
+\title{Classification}
 \usage{
 allcatch(Counts.file = NA, ID_class = "symbol", sep = "\\t")
 }
