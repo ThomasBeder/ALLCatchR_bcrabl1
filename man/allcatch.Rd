@@ -4,7 +4,7 @@
 \alias{allcatch_bcrabl1}
 \title{Classification}
 \usage{
-allcatch_bcrabl1(Counts.file = NA, ID_class = "symbol", sep = "\\t")
+allcatch_bcrabl1(Counts.file = NA, ID_class = "symbol", sep = "\\t", out.file = "/path)
 }
 \arguments{
 \item{Counts.file}{count data}
@@ -13,6 +13,9 @@ allcatch_bcrabl1(Counts.file = NA, ID_class = "symbol", sep = "\\t")
 
 \item{sep}{file seperator}
 }
+
+\item{out.file}{output file path}
+}
 \value{
 data.frame containing class predictions
 }
@@ -20,6 +23,6 @@ data.frame containing class predictions
 Prediction of B-ALL leukemia subtypes based on expression data
 }
 \examples{
-allcatch()
+allcatch_bcrabl1()
 
 }
