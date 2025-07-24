@@ -9,10 +9,9 @@ allcatch_bcrabl1(Counts.file = NA, ID_class = "symbol", sep = "\\t", out.file = 
 \arguments{
 \item{Counts.file}{count data}
 
-\item{ID_class}{gene ids}
+\item{ID_class}{gene ids used; c("symbol","ensemble_ID","entrez_ID")}
 
 \item{sep}{file seperator}
-}
 
 \item{out.file}{output file path}
 }
